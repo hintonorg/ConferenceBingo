@@ -112,8 +112,26 @@ namespace ConferenceBingo
 
                     Grid.SetColumn(MyImage, j);
                     Grid.SetRow(MyImage, i);
-                    
-                    grdBingo.Children.Add(MyImage);
+
+                    //****************
+                    grdBingoOverlay.Children.Add(MyImage);
+
+                    Image MyImageOverlay = new Image();
+                    MyImageOverlay.Source = "XT.png";
+
+                    Grid.SetColumn(MyImageOverlay, j);
+                    Grid.SetRow(MyImageOverlay, i);
+
+
+                    grdBingoOverlay.Children.Add(MyImageOverlay);
+
+                    //Grid.SetColumn(MyImage, j);
+                    //Grid.SetRow(MyImage, i);
+
+                    //****************
+                    //grdBingoOverlay.Children.Add(MyImage);
+
+                    grdBingo.Children.Add(grdBingoOverlay);
 
 
                     iCnt++;
@@ -187,8 +205,12 @@ namespace ConferenceBingo
             if(BingoList[Id].ClickedOn == "N")
             { 
                 BingoList[Id].ClickedOn = "Y";
+                //img.Source = BingoList[Id].image.Source;    //XT image
                 //img.Source = BingoList[25].image.Source;    //XT image
-                DisplayPlayAgainButton(img.X, img.Y);
+                //DisplayPlayAgainButton(img.X, img.Y);
+
+                img.Source = "Line.png";    //XT image
+                img.Source = "XT.png";
             }
             else
             {

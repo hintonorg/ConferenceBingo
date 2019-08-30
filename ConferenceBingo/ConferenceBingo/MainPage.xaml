@@ -9,7 +9,11 @@
     
         <StackLayout x:Name="slGrid" >
             <Grid x:Name="grdBingo" Padding="1" RowSpacing="1" ColumnSpacing="1" Margin="2,50,2,50" VerticalOptions="CenterAndExpand"  IsTabStop="True" IsEnabled="True" IsVisible="True" >
-                <!--
+
+            <Grid x:Name="grdBingoOverlay">
+            </Grid>
+
+            <!--
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.20*" />
                 <ColumnDefinition Width="0.20*" />
@@ -26,9 +30,13 @@
                 <RowDefinition Height="120*" />
             </Grid.RowDefinitions>
             -->
-            
         </Grid>
 
+        <Grid>
+            <Image Source="img0.png" />
+            <Image Source="XT.png" />
+        </Grid>
+            
         <AbsoluteLayout x:Name="Overlay" >
             <Image x:Name="XImage" Aspect="AspectFit" Source="XT.png" HorizontalOptions="Center" VerticalOptions="Center" />
         </AbsoluteLayout>
