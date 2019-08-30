@@ -34,7 +34,7 @@ namespace ConferenceBingo
 
 
             //playAgainButton.IsVisible = false;
-            XImage.IsVisible = false;
+            //XImage.IsVisible = false;
 
             /*
             aBingoBoard = new string[5, 5] {{"N","N","N","N","N"},
@@ -148,6 +148,7 @@ namespace ConferenceBingo
             Initboard();
         }
 
+        /*
         private void DisplayPlayAgainButton(double x, double y)
         {
             XImage.Scale = 0;
@@ -167,12 +168,8 @@ namespace ConferenceBingo
 
 
             //Add the location image and place on the view
-            /*
-            grdBingo.Children.Add(XImage);
-            AbsoluteLayout.SetLayoutFlags(XImage, AbsoluteLayoutFlags.PositionProportional);
-            AbsoluteLayout.SetLayoutBounds(XImage, new Rectangle(0.025, 0.025, 48, 48));
-            */
         }
+        */
 
         //async Task DisplayPlayAgainButton()
         /*

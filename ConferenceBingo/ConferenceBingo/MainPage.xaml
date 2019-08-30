@@ -32,6 +32,7 @@
             -->
         </Grid>
 
+        <!--            
         <Grid>
             <Image Source="img0.png" />
             <Image Source="XT.png" />
@@ -40,7 +41,7 @@
         <AbsoluteLayout x:Name="Overlay" >
             <Image x:Name="XImage" Aspect="AspectFit" Source="XT.png" HorizontalOptions="Center" VerticalOptions="Center" />
         </AbsoluteLayout>
-            
+        -->    
         <Button x:Name="btnNewGame" Text="New Game" BackgroundColor="White" TextColor="Blue"  Clicked="btnNewGame_Clicked" ></Button>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
