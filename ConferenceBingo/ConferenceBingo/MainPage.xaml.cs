@@ -265,12 +265,29 @@ namespace ConferenceBingo
                 Grid.SetColumn(MyImageOverlay, GetColumn(Id));
                 Grid.SetRow(MyImageOverlay, GetRow(Id));
 
+                //******************
+                
+                MyImageOverlay.Scale = 0;
+                double playMyImageOverlayWidth = MyImageOverlay.Width;
+                double maxScale = 1 / playMyImageOverlayWidth;
+
+                MyImageOverlay.ScaleTo(maxScale, 1000, Easing.SpringOut);
+                
+                //******************
+
                 grdBingo.Children.Add(MyImageOverlay);
             }
             else
             {
                 BingoList[Id].ClickedOn = "N";
+
+                img.Scale = 0;
+                double playMyImageOverlayWidth = img.Width;
+                double maxScale = 1 / playMyImageOverlayWidth;
+                //img.ScaleTo(maxScale, 1000, Easing.SpringOut);
+
                 img.Source = BingoList[Id].image.Source;
+
             }
 
             //******************
@@ -281,7 +298,8 @@ namespace ConferenceBingo
                 if ((BingoList[0].ClickedOn == "Y") && (BingoList[1].ClickedOn == "Y") && (BingoList[2].ClickedOn == "Y") && (BingoList[3].ClickedOn == "Y") && (BingoList[4].ClickedOn == "Y"))
                 {
                     MyImage = (Image)grdBingo.Children[i];
-                    MyImage.Source = BingoList[26].image.Source;    //Line
+
+                    //MyImage.Source = BingoList[26].image.Source;    //Line
 
                     //DisplayAlert("Congratulations", "You won the game", "OK");
                 }
