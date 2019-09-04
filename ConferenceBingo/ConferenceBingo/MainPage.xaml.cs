@@ -113,7 +113,10 @@ namespace ConferenceBingo
                     Grid.SetColumn(MyImage, j);
                     Grid.SetRow(MyImage, i);
 
+                    grdBingo.Children.Add(MyImage);
+
                     //****************
+                    /*
                     grdBingoOverlay.Children.Add(MyImage);
 
                     Image MyImageOverlay = new Image();
@@ -125,14 +128,8 @@ namespace ConferenceBingo
 
                     grdBingoOverlay.Children.Add(MyImageOverlay);
 
-                    //Grid.SetColumn(MyImage, j);
-                    //Grid.SetRow(MyImage, i);
-
-                    //****************
-                    //grdBingoOverlay.Children.Add(MyImage);
-
                     grdBingo.Children.Add(grdBingoOverlay);
-
+                    */
 
                     iCnt++;
                 }
@@ -187,27 +184,88 @@ namespace ConferenceBingo
             playAgainButton.ScaleTo(maxScale, 1000, Easing.SpringOut);
         }
         */
+
+        private int GetColumn(int Id)
+        {
+            int iCol = 0;
+
+            if ((Id == 0) || (Id == 5) || (Id == 10) || (Id == 15) || (Id == 20))
+                iCol = 0;
+            if ((Id == 1) || (Id == 6) || (Id == 11) || (Id == 16) || (Id == 21))
+                iCol = 1;
+            if ((Id == 2) || (Id == 7) || (Id == 12) || (Id == 17) || (Id == 22))
+                iCol = 2;
+            if ((Id == 3) || (Id == 8) || (Id == 13) || (Id == 18) || (Id == 23))
+                iCol = 3;
+            if ((Id == 4) || (Id == 9) || (Id == 14) || (Id == 19) || (Id == 24))
+                iCol = 4;
+
+            return iCol;
+        }
+        private int GetRow(int Id)
+        {
+            int iRow = 0;
+
+            if ((Id >= 0) && (Id <= 4))
+                iRow = 0;
+            if ((Id >= 5) && (Id <= 9))
+                iRow = 1;
+            if ((Id >= 10) && (Id <= 14))
+                iRow = 2;
+            if ((Id >= 15) && (Id <= 19))
+                iRow = 3;
+            if ((Id >= 20) && (Id <= 24))
+                iRow = 4;
+
+            return iRow;
+
+        }
+
+        private void OverlayImageEvent(Image MyImageOverlay)
+        {
+            var tapGestureRecognizer = new TapGestureRecognizer();
+
+            tapGestureRecognizer.Tapped += (sender, e) =>
+            {
+                // handle the tap
+                MyImage_Clicked(sender, e);
+            };
+
+
+            MyImageOverlay.GestureRecognizers.Add(tapGestureRecognizer);
+        }
         #endregion Functions
 
         #region Events
         private void MyImage_Clicked(object sender, EventArgs e)
         {
             int Id;
+
             Image img = (Image)sender;
             Image MyImage;
 
             //aBingoBoard[Convert.ToInt32(img.ClassId.Substring(0, 1)), Convert.ToInt32(img.ClassId.Substring(1, 1))] = "Y";
             Id = BingoList[Convert.ToInt32(img.ClassId)].Id;
 
-            if(BingoList[Id].ClickedOn == "N")
+
+            if (BingoList[Id].ClickedOn == "N")
             { 
                 BingoList[Id].ClickedOn = "Y";
-                //img.Source = BingoList[Id].image.Source;    //XT image
-                //img.Source = BingoList[25].image.Source;    //XT image
-                //DisplayPlayAgainButton(img.X, img.Y);
 
-                img.Source = "Line.png";    //XT image
-                img.Source = "XT.png";
+                //img.Source = BingoList[25].image.Source;   //XT image  
+
+                // **** New stuff
+                Image MyImageOverlay = new Image();
+                MyImageOverlay.ClassId = Id.ToString();
+                MyImageOverlay.Aspect = Aspect.AspectFit;
+
+                OverlayImageEvent(MyImageOverlay);
+                MyImageOverlay.Source = BingoList[25].image.Source;
+                
+                Grid.SetColumn(MyImageOverlay, GetColumn(Id));
+                Grid.SetRow(MyImageOverlay, GetRow(Id));
+
+                grdBingo.Children.Add(MyImageOverlay);
             }
             else
             {
@@ -218,7 +276,7 @@ namespace ConferenceBingo
             //******************
             //Horizontal lines
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i < 6; i++)
             {
                 if ((BingoList[0].ClickedOn == "Y") && (BingoList[1].ClickedOn == "Y") && (BingoList[2].ClickedOn == "Y") && (BingoList[3].ClickedOn == "Y") && (BingoList[4].ClickedOn == "Y"))
                 {
@@ -229,7 +287,7 @@ namespace ConferenceBingo
                 }
             }
 
-            for (int i = 5; i < 10; i++)
+            for (int i = 6; i < 11; i++)
             {
                 if ((BingoList[5].ClickedOn == "Y") && (BingoList[6].ClickedOn == "Y") && (BingoList[7].ClickedOn == "Y") && (BingoList[8].ClickedOn == "Y") && (BingoList[9].ClickedOn == "Y"))
                 {
@@ -240,7 +298,7 @@ namespace ConferenceBingo
                 }
             }
 
-            for (int i = 10; i < 15; i++)
+            for (int i = 11; i < 16; i++)
             {
                 if ((BingoList[10].ClickedOn == "Y") && (BingoList[11].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[13].ClickedOn == "Y") && (BingoList[14].ClickedOn == "Y"))
                 {
@@ -251,7 +309,7 @@ namespace ConferenceBingo
                 }
             }
 
-            for (int i = 15; i < 20; i++)
+            for (int i = 16; i < 21; i++)
             {
                 if ((BingoList[15].ClickedOn == "Y") && (BingoList[16].ClickedOn == "Y") && (BingoList[17].ClickedOn == "Y") && (BingoList[18].ClickedOn == "Y") && (BingoList[19].ClickedOn == "Y"))
                 {
@@ -262,7 +320,7 @@ namespace ConferenceBingo
                 }
             }
 
-            for (int i = 20; i < 25; i++)
+            for (int i = 21; i < 26; i++)
             {
                 if ((BingoList[20].ClickedOn == "Y") && (BingoList[21].ClickedOn == "Y") && (BingoList[22].ClickedOn == "Y") && (BingoList[23].ClickedOn == "Y") && (BingoList[24].ClickedOn == "Y"))
                 {
@@ -274,7 +332,7 @@ namespace ConferenceBingo
             }
 
             //Vertical lines
-            for (int i = 0; i < 21; i += 5)
+            for (int i = 1; i < 22; i += 5)
             {
                 if ((BingoList[0].ClickedOn == "Y") && (BingoList[5].ClickedOn == "Y") && (BingoList[10].ClickedOn == "Y") && (BingoList[15].ClickedOn == "Y") && (BingoList[20].ClickedOn == "Y"))
                 {
@@ -283,7 +341,7 @@ namespace ConferenceBingo
                 }
             }
 
-            for (int i = 1; i < 22; i += 5)
+            for (int i = 2; i < 23; i += 5)
             {
                 if ((BingoList[1].ClickedOn == "Y") && (BingoList[6].ClickedOn == "Y") && (BingoList[11].ClickedOn == "Y") && (BingoList[16].ClickedOn == "Y") && (BingoList[21].ClickedOn == "Y"))
                 {
@@ -292,7 +350,7 @@ namespace ConferenceBingo
                 }
             }
 
-            for (int i = 2; i < 23; i += 5)
+            for (int i = 3; i < 24; i += 5)
             {
                 if ((BingoList[2].ClickedOn == "Y") && (BingoList[7].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[17].ClickedOn == "Y") && (BingoList[22].ClickedOn == "Y"))
                 {
@@ -301,7 +359,7 @@ namespace ConferenceBingo
                 }
             }
 
-            for (int i = 3; i < 24; i += 5)
+            for (int i = 4; i < 25; i += 5)
             {
                 if ((BingoList[3].ClickedOn == "Y") && (BingoList[8].ClickedOn == "Y") && (BingoList[13].ClickedOn == "Y") && (BingoList[18].ClickedOn == "Y") && (BingoList[23].ClickedOn == "Y"))
                 {
@@ -310,7 +368,7 @@ namespace ConferenceBingo
                 }
             }
 
-            for (int i = 4; i < 25; i += 5)
+            for (int i = 5; i < 26; i += 5)
             {
                 if ((BingoList[4].ClickedOn == "Y") && (BingoList[9].ClickedOn == "Y") && (BingoList[14].ClickedOn == "Y") && (BingoList[19].ClickedOn == "Y") && (BingoList[24].ClickedOn == "Y"))
                 {
@@ -352,7 +410,7 @@ namespace ConferenceBingo
             //Diagonal from top to right
             if ((BingoList[0].ClickedOn == "Y") && (BingoList[6].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[18].ClickedOn == "Y") && (BingoList[24].ClickedOn == "Y"))
             {
-                for (int j = 0; j < 25; j += 6)
+                for (int j = 1; j < 26; j += 6)
                 {
                     MyImage = (Image)grdBingo.Children[j];
                     MyImage.Source = ImageSource.FromFile("Line.png");
@@ -362,7 +420,7 @@ namespace ConferenceBingo
             //Diagonal from top to left
             if ((BingoList[4].ClickedOn == "Y") && (BingoList[8].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[16].ClickedOn == "Y") && (BingoList[20].ClickedOn == "Y"))
             {
-                for (int j = 4; j < 21; j += 4)
+                for (int j = 5; j < 22; j += 4)
                 {
                     MyImage = (Image)grdBingo.Children[j];
                     MyImage.Source = ImageSource.FromFile("Line.png");
