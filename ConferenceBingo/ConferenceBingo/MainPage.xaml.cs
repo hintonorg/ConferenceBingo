@@ -234,6 +234,14 @@ namespace ConferenceBingo
 
             MyImageOverlay.GestureRecognizers.Add(tapGestureRecognizer);
         }
+
+        async void WontheGameAlertYesNoClicked()
+        {
+            bool answer = await DisplayAlert("YOU WON", "Would you like to play a new game", "Yes", "No");
+
+            if (answer == true)
+                Resetboard();
+        }
         #endregion Functions
 
         #region Events
@@ -242,7 +250,6 @@ namespace ConferenceBingo
             int Id;
 
             Image img = (Image)sender;
-            Image MyImage;
 
             //aBingoBoard[Convert.ToInt32(img.ClassId.Substring(0, 1)), Convert.ToInt32(img.ClassId.Substring(1, 1))] = "Y";
             Id = BingoList[Convert.ToInt32(img.ClassId)].Id;
@@ -291,8 +298,136 @@ namespace ConferenceBingo
             }
 
             //******************
-            //Horizontal lines
+            //Horizontal Win
 
+            if ((BingoList[0].ClickedOn == "Y") && (BingoList[1].ClickedOn == "Y") && (BingoList[2].ClickedOn == "Y") && (BingoList[3].ClickedOn == "Y") && (BingoList[4].ClickedOn == "Y"))
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    BingoList[i].ClickedOn = "N";
+                }
+
+                WontheGameAlertYesNoClicked();
+                //DisplayAlert("Congratulations", "You won the game", "OK");
+            }
+
+            if ((BingoList[5].ClickedOn == "Y") && (BingoList[6].ClickedOn == "Y") && (BingoList[7].ClickedOn == "Y") && (BingoList[8].ClickedOn == "Y") && (BingoList[9].ClickedOn == "Y"))
+            {
+                for (int i = 5; i < 10; i++)
+                {
+                    BingoList[i].ClickedOn = "N";
+                }
+
+                WontheGameAlertYesNoClicked();
+            }
+
+            if ((BingoList[10].ClickedOn == "Y") && (BingoList[11].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[13].ClickedOn == "Y") && (BingoList[14].ClickedOn == "Y"))
+            {
+                for (int i = 10; i < 15; i++)
+                {
+                    BingoList[i].ClickedOn = "N";
+                }
+
+                WontheGameAlertYesNoClicked();
+            }
+
+            if ((BingoList[15].ClickedOn == "Y") && (BingoList[16].ClickedOn == "Y") && (BingoList[17].ClickedOn == "Y") && (BingoList[18].ClickedOn == "Y") && (BingoList[19].ClickedOn == "Y"))
+            {
+                for (int i = 15; i < 20; i++)
+                {
+                    BingoList[i].ClickedOn = "N";
+                }
+
+                WontheGameAlertYesNoClicked();
+            }
+
+            if ((BingoList[20].ClickedOn == "Y") && (BingoList[21].ClickedOn == "Y") && (BingoList[22].ClickedOn == "Y") && (BingoList[23].ClickedOn == "Y") && (BingoList[24].ClickedOn == "Y"))
+            {
+                for (int i = 20; i < 25; i++)
+                {
+                    BingoList[i].ClickedOn = "N";
+                }
+
+                WontheGameAlertYesNoClicked();
+            }
+
+            //Vertical Win
+            if ((BingoList[0].ClickedOn == "Y") && (BingoList[5].ClickedOn == "Y") && (BingoList[10].ClickedOn == "Y") && (BingoList[15].ClickedOn == "Y") && (BingoList[20].ClickedOn == "Y"))
+            {
+                for (int i = 0; i < 21; i += 5)
+                {
+                    BingoList[i].ClickedOn = "N";
+                }
+
+                WontheGameAlertYesNoClicked();
+            }
+
+            if ((BingoList[1].ClickedOn == "Y") && (BingoList[6].ClickedOn == "Y") && (BingoList[11].ClickedOn == "Y") && (BingoList[16].ClickedOn == "Y") && (BingoList[21].ClickedOn == "Y"))
+            {
+                for (int i = 1; i < 22; i += 5)
+                {
+                    BingoList[i].ClickedOn = "N";
+                }
+
+                WontheGameAlertYesNoClicked();
+            }
+
+            if ((BingoList[2].ClickedOn == "Y") && (BingoList[7].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[17].ClickedOn == "Y") && (BingoList[22].ClickedOn == "Y"))
+            {
+                for (int i = 2; i < 23; i += 5)
+                {
+                    BingoList[i].ClickedOn = "N";
+                }
+
+                WontheGameAlertYesNoClicked();
+            }
+
+            if ((BingoList[3].ClickedOn == "Y") && (BingoList[8].ClickedOn == "Y") && (BingoList[13].ClickedOn == "Y") && (BingoList[18].ClickedOn == "Y") && (BingoList[23].ClickedOn == "Y"))
+            {
+                for (int i = 3; i < 24; i += 5)
+                {
+                    BingoList[i].ClickedOn = "N";
+                }
+
+                WontheGameAlertYesNoClicked();
+            }
+
+            if ((BingoList[4].ClickedOn == "Y") && (BingoList[9].ClickedOn == "Y") && (BingoList[14].ClickedOn == "Y") && (BingoList[19].ClickedOn == "Y") && (BingoList[24].ClickedOn == "Y"))
+            {
+                for (int i = 4; i < 25; i += 5)
+                {
+                    BingoList[i].ClickedOn = "N";
+                }
+
+                WontheGameAlertYesNoClicked();
+            }
+
+
+            //Diagonal from top to right
+            if ((BingoList[0].ClickedOn == "Y") && (BingoList[6].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[18].ClickedOn == "Y") && (BingoList[24].ClickedOn == "Y"))
+            {
+                for (int i = 0; i < 25; i += 6)
+                {
+                    BingoList[i].ClickedOn = "N";
+                }
+
+                WontheGameAlertYesNoClicked();
+            }
+
+            //Diagonal from top to left
+            if ((BingoList[4].ClickedOn == "Y") && (BingoList[8].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[16].ClickedOn == "Y") && (BingoList[20].ClickedOn == "Y"))
+            {
+                for (int i = 4; i < 21; i += 4)
+                {
+                    BingoList[i].ClickedOn = "N";
+                }
+
+                WontheGameAlertYesNoClicked();
+            }
+
+            //******************
+            //Horizontal lines
+            /*
             for (int i = 1; i < 6; i++)
             {
                 if ((BingoList[0].ClickedOn == "Y") && (BingoList[1].ClickedOn == "Y") && (BingoList[2].ClickedOn == "Y") && (BingoList[3].ClickedOn == "Y") && (BingoList[4].ClickedOn == "Y"))
@@ -304,7 +439,7 @@ namespace ConferenceBingo
                     //DisplayAlert("Congratulations", "You won the game", "OK");
                 }
             }
-
+            
             for (int i = 6; i < 11; i++)
             {
                 if ((BingoList[5].ClickedOn == "Y") && (BingoList[6].ClickedOn == "Y") && (BingoList[7].ClickedOn == "Y") && (BingoList[8].ClickedOn == "Y") && (BingoList[9].ClickedOn == "Y"))
@@ -348,7 +483,8 @@ namespace ConferenceBingo
                     //DisplayAlert("Congratulations", "You won the game", "OK");
                 }
             }
-
+            */
+            /*
             //Vertical lines
             for (int i = 1; i < 22; i += 5)
             {
@@ -395,36 +531,8 @@ namespace ConferenceBingo
                 }
             }
 
-            /*
-            for (int i = 0; i < 5; i++)
-            {
-                if ((aBingoBoard[i, 0] == "Y") && (aBingoBoard[i, 1] == "Y") && (aBingoBoard[i, 2] == "Y") && (aBingoBoard[i, 3] == "Y") && (aBingoBoard[i, 4] == "Y"))
-                {
-                    for (int j = (i * 5); j < ((i * 5) + 5); j++)
-                    {
-                        MyImage = (Image)grdBingo.Children[j];
-                        //MyImage = ImageSource.FromFile("Line.png");
-                        MyImage.Source = ImageSource.FromFile("Line.png");
-                    }
-                }
-            }
             */
             /*
-            //Vertical lines
-            for (int i = 0; i < 5; i++)
-            {
-                if ((aBingoBoard[0, i] == "Y") && (aBingoBoard[1, i] == "Y") && (aBingoBoard[2, i] == "Y") && (aBingoBoard[3, i] == "Y") && (aBingoBoard[4, i] == "Y"))
-                {
-                    for (int j = i; j < (i + 21); j += 5)
-                    {
-                        MyImage = (Image)grdBingo.Children[j];
-                        MyImage.Source = ImageSource.FromFile("Line.png");
-                    }
-                }
-            }
-
-            */
-
             //Diagonal from top to right
             if ((BingoList[0].ClickedOn == "Y") && (BingoList[6].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[18].ClickedOn == "Y") && (BingoList[24].ClickedOn == "Y"))
             {
@@ -444,140 +552,8 @@ namespace ConferenceBingo
                     MyImage.Source = ImageSource.FromFile("Line.png");
                 }
             }
-
+            */
         }
-
-        /*
-        private void MyImage_Clicked(object sender, EventArgs e)
-        {
-            Image img = (Image)sender;
-            Image MyImage;
-
-            aBingoBoard[Convert.ToInt32(img.ClassId.Substring(0, 1)), Convert.ToInt32(img.ClassId.Substring(1, 1))] = "Y";
-
-            img.Source = ImageSource.FromFile("XT.png");
-
-            //******************
-            //Horizontal lines
-            for (int i = 0; i < 5; i++)
-            {
-                if ((aBingoBoard[i, 0] == "Y") && (aBingoBoard[i, 1] == "Y") && (aBingoBoard[i, 2] == "Y") && (aBingoBoard[i, 3] == "Y") && (aBingoBoard[i, 4] == "Y"))
-                {
-                    for (int j = (i * 5); j < ((i * 5) + 5); j++)
-                    {
-                        MyImage = (Image)grdBingo.Children[j];
-                        //MyImage = ImageSource.FromFile("Line.png");
-                        MyImage.Source = ImageSource.FromFile("Line.png");
-                    }
-                }
-            }
-
-            //Vertical lines
-            for (int i = 0; i < 5; i++)
-            {
-                if ((aBingoBoard[0, i] == "Y") && (aBingoBoard[1, i] == "Y") && (aBingoBoard[2, i] == "Y") && (aBingoBoard[3, i] == "Y") && (aBingoBoard[4, i] == "Y"))
-                {
-                    for (int j = i; j < (i + 21); j += 5)
-                    {
-                        MyImage = (Image)grdBingo.Children[j];
-                        MyImage.Source = ImageSource.FromFile("Line.png");
-                    }
-                }
-            }
-
-
-            //Diagonal from top to right
-            if ((aBingoBoard[0, 0] == "Y") && (aBingoBoard[1, 1] == "Y") && (aBingoBoard[2, 2] == "Y") && (aBingoBoard[3, 3] == "Y") && (aBingoBoard[4, 4] == "Y"))
-            {
-                for (int j = 0; j < 25; j += 6)
-                {
-                    MyImage = (Image)grdBingo.Children[j];
-                    MyImage.Source = ImageSource.FromFile("Line.png");
-                }
-            }
-
-            //Diagonal from top to left
-            if ((aBingoBoard[0, 4] == "Y") && (aBingoBoard[1, 3] == "Y") && (aBingoBoard[2, 2] == "Y") && (aBingoBoard[3, 1] == "Y") && (aBingoBoard[4, 0] == "Y"))
-            {
-                for (int j = 4; j < 21; j += 4)
-                {
-                    MyImage = (Image)grdBingo.Children[j];
-                    MyImage.Source = ImageSource.FromFile("Line.png");
-                }
-            }
-        }
-        */
-
-        /*
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-            Button MyButton;
-
-            aBingoBoard[Convert.ToInt32(btn.ClassId.Substring(0, 1)), Convert.ToInt32(btn.ClassId.Substring(1, 1))] = "Y";
-
-            //count++;
-
-            //string s = btn.Id.ToString();
-            //string s1 = btn.Text;
-
-            //((Button)sender).Text = $"You clicked {count} times";
-            //btn11.Text = $"Testing {count} times";
-
-            //((Button)sender).ImageSource = ImageSource.FromFile("XT.png");
-
-            btn.ImageSource = ImageSource.FromFile("XT.png");
-
-            //******************
-            //Horizontal lines
-            for (int i = 0; i < 5; i++)
-            {
-                if ((aBingoBoard[i, 0] == "Y") && (aBingoBoard[i, 1] == "Y") && (aBingoBoard[i, 2] == "Y") && (aBingoBoard[i, 3] == "Y") && (aBingoBoard[i, 4] == "Y"))
-                {
-                    for (int j = (i * 5); j < ((i * 5) + 5); j++)
-                    {
-                        MyButton = (Button)grdBingo.Children[j];
-                        //MyButton.ImageSource = ImageSource.FromFile("Line.png");
-                        MyButton.ImageSource = ImageSource.FromFile("XT.png");
-                    }
-                }
-            }
-
-            //Vertical lines
-            for (int i = 0; i < 5; i++)
-            {
-                if ((aBingoBoard[0, i] == "Y") && (aBingoBoard[1, i] == "Y") && (aBingoBoard[2, i] == "Y") && (aBingoBoard[3, i] == "Y") && (aBingoBoard[4, i] == "Y"))
-                {
-                    for (int j = i; j < (i + 21); j+=5)
-                    {
-                        MyButton = (Button)grdBingo.Children[j];
-                        MyButton.ImageSource = ImageSource.FromFile("XT.png");
-                    }
-                }
-            }
-
-
-            //Diagonal from top to right
-            if ((aBingoBoard[0, 0] == "Y") && (aBingoBoard[1, 1] == "Y") && (aBingoBoard[2, 2] == "Y") && (aBingoBoard[3, 3] == "Y") && (aBingoBoard[4, 4] == "Y"))
-            {
-                for (int j = 0; j < 25; j+=6)
-                {
-                    MyButton = (Button)grdBingo.Children[j];
-                    MyButton.ImageSource = ImageSource.FromFile("Line.png");
-                }
-            }
-
-            //Diagonal from top to left
-            if ((aBingoBoard[0, 4] == "Y") && (aBingoBoard[1, 3] == "Y") && (aBingoBoard[2, 2] == "Y") && (aBingoBoard[3, 1] == "Y") && (aBingoBoard[4, 0] == "Y"))
-            {
-                for (int j = 4; j < 21; j += 4)
-                {
-                    MyButton = (Button)grdBingo.Children[j];
-                    MyButton.ImageSource = ImageSource.FromFile("Line.png");
-                }
-            }
-        }
-        */
 
         private void btnNewGame_Clicked(object sender, EventArgs e)
         {
