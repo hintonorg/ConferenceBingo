@@ -8,7 +8,11 @@
              x:Class="ConferenceBingo.MainPage">
     
         <StackLayout x:Name="slGrid" >
-            <Grid x:Name="grdBingo" Padding="1" RowSpacing="1" ColumnSpacing="1" Margin="2,50,2,50" VerticalOptions="CenterAndExpand"  IsTabStop="True" IsEnabled="True" IsVisible="True" >
+            <Grid Margin="0,30,0,0">
+            <Label Text="Conference Bingo" LineBreakMode="NoWrap" FontSize="Title" HorizontalTextAlignment="Center" TextColor="#0000ff" VerticalTextAlignment="Center" HeightRequest="100" />
+        </Grid>
+
+            <Grid x:Name="grdBingo" Padding="1" RowSpacing="1" ColumnSpacing="1" Margin="2,30,2,50" VerticalOptions="Center"  IsTabStop="True" IsEnabled="True" IsVisible="True" HorizontalOptions="Center" >
 
             <Grid x:Name="grdBingoOverlay">
             </Grid>
@@ -42,7 +46,7 @@
             <Image x:Name="XImage" Aspect="AspectFit" Source="XT.png" HorizontalOptions="Center" VerticalOptions="Center" />
         </AbsoluteLayout>
         -->    
-        <Button x:Name="btnNewGame" Text="New Game" BackgroundColor="White" TextColor="Blue"  Clicked="btnNewGame_Clicked" ></Button>
+        <Button x:Name="btnNewGame" Text="New Game" BackgroundColor="White" TextColor="Blue" Margin="0,0,0,30"  Clicked="btnNewGame_Clicked" ></Button>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
