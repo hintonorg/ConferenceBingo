@@ -11,8 +11,8 @@ namespace ConferenceBingo
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        //string[,] aBingoBoard;
         List<BingoClass> BingoList;
+        List<int> rList;
 
         public MainPage()
         {
@@ -32,22 +32,11 @@ namespace ConferenceBingo
         {
             int iCnt = 0;
 
-
-            //playAgainButton.IsVisible = false;
-            //XImage.IsVisible = false;
-
-            /*
-            aBingoBoard = new string[5, 5] {{"N","N","N","N","N"},
-                                    {"N","N","N","N","N"},
-                                    {"N","N","N","N","N"},
-                                    {"N","N","N","N","N"},
-                                    {"N","N","N","N","N"} };
-
-            */
-
             BingoList = new List<BingoClass>();
+            rList = new List<int>();
+            rList.Add(12);      //Add the middle number and always have it in the middle
 
-            for (int i = 0; i < 27; i++)
+            for (int i = 0; i < 26; i++)
             {
                 BingoClass bingo = new BingoClass();
                 bingo.ClickedOn = "N";
@@ -55,8 +44,6 @@ namespace ConferenceBingo
                 bingo.image.BackgroundColor = System.Drawing.Color.White;
                 bingo.image.ClassId = i.ToString();
                 bingo.Id = i;
-                //bingo.image.HorizontalOptions = LayoutOptions.FillAndExpand;
-                //bingo.image.VerticalOptions = LayoutOptions.FillAndExpand;
                 bingo.image.Aspect = Aspect.AspectFit;
 
                 //****************
@@ -65,13 +52,19 @@ namespace ConferenceBingo
                 {
                     bingo.image.Source = ImageSource.FromFile("XT.png");
                 }
+                /*
                 else if(i == 26)
                 {
                     bingo.image.Source = ImageSource.FromFile("Line.png");
                 }
+                */
+                else if (i == 12)   //Keep a free space in the middle
+                {
+                    bingo.image.Source = ImageSource.FromFile("img12.png");
+                }
                 else
-                { 
-                    bingo.image.Source = ImageSource.FromFile("img" + i.ToString() + ".png");
+                {
+                    bingo.image.Source = ImageSource.FromFile("img" + GetRandomNum().ToString() + ".png");
                     //bingo.image.Source = ImageSource.FromFile("img10.jpg");
                 }
 
@@ -80,14 +73,7 @@ namespace ConferenceBingo
 
             //*********************
 
-            /*
-            List<ImageSource> ImgList = new List<ImageSource>();
-            ImgList.Add(ImageSource.FromFile("XT.png"));
-            ImgList.Add(ImageSource.FromFile("Line.png"));
-            */
-            //*********************
             var tapGestureRecognizer = new TapGestureRecognizer();
-            //tapGestureRecognizer.Tapped += (s, e) =>
 
             tapGestureRecognizer.Tapped += (sender, e) =>
             {
@@ -136,6 +122,27 @@ namespace ConferenceBingo
             }
         }
 
+        private int GetRandomNum()
+        {
+            int i = 0, rInt = 0;
+
+            while (true)
+            {
+                Random rdm = new Random();
+                rInt = rdm.Next(0, 25);
+
+                i++;
+
+                if (!rList.Exists(x => x == rInt))
+                { 
+                    rList.Add(rInt);
+                    break;
+                }
+            }
+
+            return rInt;
+        }
+
         private void Resetboard()
         {
             InitializeComponent();
@@ -144,46 +151,6 @@ namespace ConferenceBingo
 
             Initboard();
         }
-
-        /*
-        private void DisplayPlayAgainButton(double x, double y)
-        {
-            XImage.Scale = 0;
-            XImage.IsVisible = true;
-            XImage.IsEnabled = true;
-
-            // (See above for rationale)
-            //double playAgainButtonWidth = playAgainButton.Measure(Double.PositiveInfinity, Double.PositiveInfinity).Request.Width;
-            //double playAgainButtonWidth = playAgainButton.Measure(x, y).Request.Width;    //DEBUG
-
-            //double maxScale = board.Width / playAgainButtonWidth;
-            //double maxScale = 50 / playAgainButtonWidth;  //DEBUG
-            double maxScale = 10;
-
-            //playAgainButton.ScaleTo(maxScale, 1000, Easing.SpringOut);
-            XImage.ScaleTo(maxScale, 1000, Easing.SpringOut);    //DEBUG
-
-
-            //Add the location image and place on the view
-        }
-        */
-
-        //async Task DisplayPlayAgainButton()
-        /*
-        private void DisplayPlayAgainButton()
-        {
-            playAgainButton.Scale = 0;
-            playAgainButton.IsVisible = true;
-            playAgainButton.IsEnabled = true;
-
-            // (See above for rationale)
-            double playAgainButtonWidth = playAgainButton.Measure(Double.PositiveInfinity, Double.PositiveInfinity).Request.Width;
-
-            //double maxScale = board.Width / playAgainButtonWidth;
-            double maxScale = 200 / playAgainButtonWidth;
-            playAgainButton.ScaleTo(maxScale, 1000, Easing.SpringOut);
-        }
-        */
 
         private int GetColumn(int Id)
         {
@@ -273,13 +240,13 @@ namespace ConferenceBingo
                 Grid.SetRow(MyImageOverlay, GetRow(Id));
 
                 //******************
-                
+                /*
                 MyImageOverlay.Scale = 0;
                 double playMyImageOverlayWidth = MyImageOverlay.Width;
                 double maxScale = 1 / playMyImageOverlayWidth;
 
                 MyImageOverlay.ScaleTo(maxScale, 1000, Easing.SpringOut);
-                
+                */
                 //******************
 
                 grdBingo.Children.Add(MyImageOverlay);
@@ -287,12 +254,12 @@ namespace ConferenceBingo
             else
             {
                 BingoList[Id].ClickedOn = "N";
-
+                /*
                 img.Scale = 0;
                 double playMyImageOverlayWidth = img.Width;
                 double maxScale = 1 / playMyImageOverlayWidth;
                 //img.ScaleTo(maxScale, 1000, Easing.SpringOut);
-
+                */
                 img.Source = BingoList[Id].image.Source;
 
             }
