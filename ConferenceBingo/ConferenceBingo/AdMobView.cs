@@ -4,11 +4,7 @@ namespace ConferenceBingo
 {
     public class AdMobView : View
     {
-        public static readonly BindableProperty AdUnitIdProperty = BindableProperty.Create(
-                       nameof(AdUnitId),
-                       typeof(string),
-                       typeof(AdMobView),
-                       string.Empty);
+        public static readonly BindableProperty AdUnitIdProperty = BindableProperty.Create(nameof(AdUnitId), typeof(string), typeof(AdMobView), string.Empty);
 
         public string AdUnitId
         {

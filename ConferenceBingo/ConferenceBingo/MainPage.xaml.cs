@@ -19,6 +19,7 @@ namespace ConferenceBingo
             //int count = 0;
 
             InitializeComponent();
+            this.BindingContext = new MainPageViewModel();
 
             //*************************
 

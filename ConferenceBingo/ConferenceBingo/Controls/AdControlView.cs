@@ -9,6 +9,6 @@ namespace ConferenceBingo.Controls
 {
     public class AdControlView : Xamarin.Forms.View
     {
-
+        //NOT USED
     }
 }
