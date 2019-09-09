@@ -20,6 +20,7 @@ namespace ConferenceBingo
 
             InitializeComponent();
             this.BindingContext = new MainPageViewModel();
+            
 
             //*************************
 
@@ -146,7 +147,7 @@ namespace ConferenceBingo
 
         private void Resetboard()
         {
-            InitializeComponent();
+            this.BindingContext = new MainPageViewModel();
 
             grdBingo.BackgroundColor = System.Drawing.Color.Blue;
 
