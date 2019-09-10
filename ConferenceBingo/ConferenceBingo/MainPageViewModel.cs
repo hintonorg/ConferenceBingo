@@ -9,7 +9,6 @@ namespace ConferenceBingo
         //public string AdUnitId { get; set; } = "ca-app-pub-3940256099942544/2934735716";    //IOS
         public string AdUnitId { get; set; }
 
-        //public void GetAdUnitId()
         public MainPageViewModel()
         {
 			if (Device.RuntimePlatform == Device.iOS)

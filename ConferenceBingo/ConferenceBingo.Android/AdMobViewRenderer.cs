@@ -40,8 +40,7 @@ namespace ConferenceBingo.Droid
                 AdUnitId = Element.AdUnitId
             };
 
-            //adView.LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
-            adView.LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.WrapContent, LayoutParams.WrapContent);
+            adView.LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
 
             adView.LoadAd(new AdRequest.Builder().Build());
 
