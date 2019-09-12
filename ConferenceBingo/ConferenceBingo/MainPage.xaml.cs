@@ -24,7 +24,7 @@ namespace ConferenceBingo
 
             //*************************
 
-            grdBingo.BackgroundColor = System.Drawing.Color.Blue;
+            grdBingo.BackgroundColor = System.Drawing.Color.Black;
 
             Initboard();
         }
@@ -149,7 +149,7 @@ namespace ConferenceBingo
         {
             this.BindingContext = new MainPageViewModel();
 
-            grdBingo.BackgroundColor = System.Drawing.Color.Blue;
+            grdBingo.BackgroundColor = System.Drawing.Color.Black;
 
             Initboard();
         }
@@ -206,7 +206,7 @@ namespace ConferenceBingo
 
         async void WontheGameAlertYesNoClicked()
         {
-            bool answer = await DisplayAlert("YOU WON", "Would you like to play a new game", "Yes", "No");
+            bool answer = await DisplayAlert("BINGO!", "Would you like to start a new game?", "Yes", "No");
 
             if (answer == true)
                 Resetboard();
