@@ -9,13 +9,13 @@
     
         <StackLayout x:Name="slGrid" Margin="0,0,0,0" BackgroundColor="White" >
             <Grid Margin="0,0,0,0">
-                <Label Text="Conference Bingo" LineBreakMode="NoWrap" FontSize="Title" HorizontalTextAlignment="Center" BackgroundColor="White" TextColor="#0000ff" VerticalTextAlignment="Center" HeightRequest="150"/>
+                <Label Text="Conference Bingo" LineBreakMode="NoWrap" FontSize="Title" HorizontalTextAlignment="Center" BackgroundColor="White" TextColor="Black" VerticalTextAlignment="Center" HeightRequest="150"/>
             </Grid>
             <Grid x:Name="grdBingo" Padding="1" RowSpacing="1" ColumnSpacing="1" VerticalOptions="Center"  IsTabStop="True" IsEnabled="True" IsVisible="True" HorizontalOptions="Center" >
             <Grid x:Name="grdBingoOverlay"></Grid>
         </Grid>
 
-        <Button x:Name="btnNewGame" BackgroundColor="White" HeightRequest="40" TextColor="Blue" Clicked="btnNewGame_Clicked" Text="New Game" />
+        <Button x:Name="btnNewGame" BackgroundColor="White" HeightRequest="40" TextColor="Black" Clicked="btnNewGame_Clicked" Text="New Game" />
 
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
