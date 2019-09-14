@@ -13,6 +13,8 @@ namespace ConferenceBingo
     {
         List<BingoClass> BingoList;
         List<int> rList;
+        bool bPlayBlackout = false;
+        bool bIsBlackout;
 
         public MainPage()
         {
@@ -38,10 +40,14 @@ namespace ConferenceBingo
             rList = new List<int>();
             rList.Add(12);      //Add the middle number and always have it in the middle
 
+            bIsBlackout = false;
+            bPlayBlackout = false;
+
             for (int i = 0; i < 26; i++)
             {
                 BingoClass bingo = new BingoClass();
                 bingo.ClickedOn = "N";
+                bingo.BlackoutClickedOn = "N";
                 bingo.image = new Image();
                 bingo.image.BackgroundColor = System.Drawing.Color.White;
                 bingo.image.ClassId = i.ToString();
@@ -204,12 +210,31 @@ namespace ConferenceBingo
             MyImageOverlay.GestureRecognizers.Add(tapGestureRecognizer);
         }
 
-        async void WontheGameAlertYesNoClicked()
+        private async void WontheGameAlert()
         {
-            bool answer = await DisplayAlert("BINGO!", "Would you like to start a new game?", "Yes", "No");
+            bool answer;
 
-            if (answer == true)
-                Resetboard();
+            if(bIsBlackout == true)
+            { 
+                answer = await DisplayAlert("BLACKOUT!", "New Game?", "Yes", "No");
+
+                if (answer == true)
+                    Resetboard();
+            }
+            else
+            { 
+                answer = await DisplayAlert("BINGO!", "", "Continue--Play Blackout", "New Game");
+
+                if (answer == true)
+                {
+                    bPlayBlackout = true;
+                }
+                else
+                {
+                    Resetboard();
+                    bPlayBlackout = false;
+                }
+            }
         }
         #endregion Functions
 
@@ -223,6 +248,7 @@ namespace ConferenceBingo
             //aBingoBoard[Convert.ToInt32(img.ClassId.Substring(0, 1)), Convert.ToInt32(img.ClassId.Substring(1, 1))] = "Y";
             Id = BingoList[Convert.ToInt32(img.ClassId)].Id;
 
+            BingoList[Id].BlackoutClickedOn = "Y";
 
             if (BingoList[Id].ClickedOn == "N")
             { 
@@ -267,6 +293,27 @@ namespace ConferenceBingo
             }
 
             //******************
+            bIsBlackout = true;
+
+            for (int i = 0; i < 25; i++)
+            {
+                if (BingoList[i].BlackoutClickedOn == "N")
+                {
+                    bIsBlackout = false;
+                    break;
+                }
+            }
+
+            if (bPlayBlackout == false)
+                bIsBlackout = false;
+
+            if (bIsBlackout == true)
+            {
+                WontheGameAlert();
+                return;
+            }
+
+            //******************
             //Horizontal Win
 
             if ((BingoList[0].ClickedOn == "Y") && (BingoList[1].ClickedOn == "Y") && (BingoList[2].ClickedOn == "Y") && (BingoList[3].ClickedOn == "Y") && (BingoList[4].ClickedOn == "Y"))
@@ -274,9 +321,12 @@ namespace ConferenceBingo
                 for (int i = 0; i < 5; i++)
                 {
                     BingoList[i].ClickedOn = "N";
+                    //BingoList[i].BlackoutClickedOn = "Y";
                 }
 
-                WontheGameAlertYesNoClicked();
+                if(bPlayBlackout == false)
+                    WontheGameAlert();
+                
                 //DisplayAlert("Congratulations", "You won the game", "OK");
             }
 
@@ -285,9 +335,11 @@ namespace ConferenceBingo
                 for (int i = 5; i < 10; i++)
                 {
                     BingoList[i].ClickedOn = "N";
+                    //BingoList[i].BlackoutClickedOn = "Y";
                 }
 
-                WontheGameAlertYesNoClicked();
+                if (bPlayBlackout == false)
+                    WontheGameAlert();
             }
 
             if ((BingoList[10].ClickedOn == "Y") && (BingoList[11].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[13].ClickedOn == "Y") && (BingoList[14].ClickedOn == "Y"))
@@ -295,9 +347,11 @@ namespace ConferenceBingo
                 for (int i = 10; i < 15; i++)
                 {
                     BingoList[i].ClickedOn = "N";
+                    //BingoList[i].BlackoutClickedOn = "Y";
                 }
 
-                WontheGameAlertYesNoClicked();
+                if (bPlayBlackout == false)
+                    WontheGameAlert();
             }
 
             if ((BingoList[15].ClickedOn == "Y") && (BingoList[16].ClickedOn == "Y") && (BingoList[17].ClickedOn == "Y") && (BingoList[18].ClickedOn == "Y") && (BingoList[19].ClickedOn == "Y"))
@@ -305,9 +359,11 @@ namespace ConferenceBingo
                 for (int i = 15; i < 20; i++)
                 {
                     BingoList[i].ClickedOn = "N";
+                    //BingoList[i].BlackoutClickedOn = "Y";
                 }
 
-                WontheGameAlertYesNoClicked();
+                if (bPlayBlackout == false)
+                    WontheGameAlert();
             }
 
             if ((BingoList[20].ClickedOn == "Y") && (BingoList[21].ClickedOn == "Y") && (BingoList[22].ClickedOn == "Y") && (BingoList[23].ClickedOn == "Y") && (BingoList[24].ClickedOn == "Y"))
@@ -315,9 +371,11 @@ namespace ConferenceBingo
                 for (int i = 20; i < 25; i++)
                 {
                     BingoList[i].ClickedOn = "N";
+                    //BingoList[i].BlackoutClickedOn = "Y";
                 }
 
-                WontheGameAlertYesNoClicked();
+                if (bPlayBlackout == false)
+                    WontheGameAlert();
             }
 
             //Vertical Win
@@ -326,9 +384,11 @@ namespace ConferenceBingo
                 for (int i = 0; i < 21; i += 5)
                 {
                     BingoList[i].ClickedOn = "N";
+                    //BingoList[i].BlackoutClickedOn = "Y";
                 }
 
-                WontheGameAlertYesNoClicked();
+                if (bPlayBlackout == false)
+                    WontheGameAlert();
             }
 
             if ((BingoList[1].ClickedOn == "Y") && (BingoList[6].ClickedOn == "Y") && (BingoList[11].ClickedOn == "Y") && (BingoList[16].ClickedOn == "Y") && (BingoList[21].ClickedOn == "Y"))
@@ -336,9 +396,11 @@ namespace ConferenceBingo
                 for (int i = 1; i < 22; i += 5)
                 {
                     BingoList[i].ClickedOn = "N";
+                    //BingoList[i].BlackoutClickedOn = "Y";
                 }
 
-                WontheGameAlertYesNoClicked();
+                if (bPlayBlackout == false)
+                    WontheGameAlert();
             }
 
             if ((BingoList[2].ClickedOn == "Y") && (BingoList[7].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[17].ClickedOn == "Y") && (BingoList[22].ClickedOn == "Y"))
@@ -346,9 +408,11 @@ namespace ConferenceBingo
                 for (int i = 2; i < 23; i += 5)
                 {
                     BingoList[i].ClickedOn = "N";
+                    //BingoList[i].BlackoutClickedOn = "Y";
                 }
 
-                WontheGameAlertYesNoClicked();
+                if (bPlayBlackout == false)
+                    WontheGameAlert();
             }
 
             if ((BingoList[3].ClickedOn == "Y") && (BingoList[8].ClickedOn == "Y") && (BingoList[13].ClickedOn == "Y") && (BingoList[18].ClickedOn == "Y") && (BingoList[23].ClickedOn == "Y"))
@@ -356,9 +420,11 @@ namespace ConferenceBingo
                 for (int i = 3; i < 24; i += 5)
                 {
                     BingoList[i].ClickedOn = "N";
+                    //BingoList[i].BlackoutClickedOn = "Y";
                 }
 
-                WontheGameAlertYesNoClicked();
+                if (bPlayBlackout == false)
+                    WontheGameAlert();
             }
 
             if ((BingoList[4].ClickedOn == "Y") && (BingoList[9].ClickedOn == "Y") && (BingoList[14].ClickedOn == "Y") && (BingoList[19].ClickedOn == "Y") && (BingoList[24].ClickedOn == "Y"))
@@ -366,9 +432,11 @@ namespace ConferenceBingo
                 for (int i = 4; i < 25; i += 5)
                 {
                     BingoList[i].ClickedOn = "N";
+                    //BingoList[i].BlackoutClickedOn = "Y";
                 }
 
-                WontheGameAlertYesNoClicked();
+                if (bPlayBlackout == false)
+                    WontheGameAlert();
             }
 
 
@@ -378,9 +446,11 @@ namespace ConferenceBingo
                 for (int i = 0; i < 25; i += 6)
                 {
                     BingoList[i].ClickedOn = "N";
+                    //BingoList[i].BlackoutClickedOn = "Y";
                 }
 
-                WontheGameAlertYesNoClicked();
+                if (bPlayBlackout == false)
+                    WontheGameAlert();
             }
 
             //Diagonal from top to left
@@ -389,149 +459,18 @@ namespace ConferenceBingo
                 for (int i = 4; i < 21; i += 4)
                 {
                     BingoList[i].ClickedOn = "N";
+                    //BingoList[i].BlackoutClickedOn = "Y";
                 }
 
-                WontheGameAlertYesNoClicked();
+                if (bPlayBlackout == false)
+                    WontheGameAlert();
             }
-
-            //******************
-            //Horizontal lines
-            /*
-            for (int i = 1; i < 6; i++)
-            {
-                if ((BingoList[0].ClickedOn == "Y") && (BingoList[1].ClickedOn == "Y") && (BingoList[2].ClickedOn == "Y") && (BingoList[3].ClickedOn == "Y") && (BingoList[4].ClickedOn == "Y"))
-                {
-                    MyImage = (Image)grdBingo.Children[i];
-
-                    //MyImage.Source = BingoList[26].image.Source;    //Line
-
-                    //DisplayAlert("Congratulations", "You won the game", "OK");
-                }
-            }
-            
-            for (int i = 6; i < 11; i++)
-            {
-                if ((BingoList[5].ClickedOn == "Y") && (BingoList[6].ClickedOn == "Y") && (BingoList[7].ClickedOn == "Y") && (BingoList[8].ClickedOn == "Y") && (BingoList[9].ClickedOn == "Y"))
-                {
-                    MyImage = (Image)grdBingo.Children[i];
-                    MyImage.Source = BingoList[26].image.Source;    //Line
-
-                    //DisplayAlert("Congratulations", "You won the game", "OK");
-                }
-            }
-
-            for (int i = 11; i < 16; i++)
-            {
-                if ((BingoList[10].ClickedOn == "Y") && (BingoList[11].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[13].ClickedOn == "Y") && (BingoList[14].ClickedOn == "Y"))
-                {
-                    MyImage = (Image)grdBingo.Children[i];
-                    MyImage.Source = BingoList[26].image.Source;    //Line
-
-                    //DisplayAlert("Congratulations", "You won the game", "OK");
-                }
-            }
-
-            for (int i = 16; i < 21; i++)
-            {
-                if ((BingoList[15].ClickedOn == "Y") && (BingoList[16].ClickedOn == "Y") && (BingoList[17].ClickedOn == "Y") && (BingoList[18].ClickedOn == "Y") && (BingoList[19].ClickedOn == "Y"))
-                {
-                    MyImage = (Image)grdBingo.Children[i];
-                    MyImage.Source = BingoList[26].image.Source;    //Line
-
-                    //DisplayAlert("Congratulations", "You won the game", "OK");
-                }
-            }
-
-            for (int i = 21; i < 26; i++)
-            {
-                if ((BingoList[20].ClickedOn == "Y") && (BingoList[21].ClickedOn == "Y") && (BingoList[22].ClickedOn == "Y") && (BingoList[23].ClickedOn == "Y") && (BingoList[24].ClickedOn == "Y"))
-                {
-                    MyImage = (Image)grdBingo.Children[i];
-                    MyImage.Source = BingoList[26].image.Source;    //Line
-
-                    //DisplayAlert("Congratulations", "You won the game", "OK");
-                }
-            }
-            */
-            /*
-            //Vertical lines
-            for (int i = 1; i < 22; i += 5)
-            {
-                if ((BingoList[0].ClickedOn == "Y") && (BingoList[5].ClickedOn == "Y") && (BingoList[10].ClickedOn == "Y") && (BingoList[15].ClickedOn == "Y") && (BingoList[20].ClickedOn == "Y"))
-                {
-                    MyImage = (Image)grdBingo.Children[i];
-                    MyImage.Source = ImageSource.FromFile("Line.png");
-                }
-            }
-
-            for (int i = 2; i < 23; i += 5)
-            {
-                if ((BingoList[1].ClickedOn == "Y") && (BingoList[6].ClickedOn == "Y") && (BingoList[11].ClickedOn == "Y") && (BingoList[16].ClickedOn == "Y") && (BingoList[21].ClickedOn == "Y"))
-                {
-                    MyImage = (Image)grdBingo.Children[i];
-                    MyImage.Source = ImageSource.FromFile("Line.png");
-                }
-            }
-
-            for (int i = 3; i < 24; i += 5)
-            {
-                if ((BingoList[2].ClickedOn == "Y") && (BingoList[7].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[17].ClickedOn == "Y") && (BingoList[22].ClickedOn == "Y"))
-                {
-                    MyImage = (Image)grdBingo.Children[i];
-                    MyImage.Source = ImageSource.FromFile("Line.png");
-                }
-            }
-
-            for (int i = 4; i < 25; i += 5)
-            {
-                if ((BingoList[3].ClickedOn == "Y") && (BingoList[8].ClickedOn == "Y") && (BingoList[13].ClickedOn == "Y") && (BingoList[18].ClickedOn == "Y") && (BingoList[23].ClickedOn == "Y"))
-                {
-                    MyImage = (Image)grdBingo.Children[i];
-                    MyImage.Source = ImageSource.FromFile("Line.png");
-                }
-            }
-
-            for (int i = 5; i < 26; i += 5)
-            {
-                if ((BingoList[4].ClickedOn == "Y") && (BingoList[9].ClickedOn == "Y") && (BingoList[14].ClickedOn == "Y") && (BingoList[19].ClickedOn == "Y") && (BingoList[24].ClickedOn == "Y"))
-                {
-                    MyImage = (Image)grdBingo.Children[i];
-                    MyImage.Source = ImageSource.FromFile("Line.png");
-                }
-            }
-
-            */
-            /*
-            //Diagonal from top to right
-            if ((BingoList[0].ClickedOn == "Y") && (BingoList[6].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[18].ClickedOn == "Y") && (BingoList[24].ClickedOn == "Y"))
-            {
-                for (int j = 1; j < 26; j += 6)
-                {
-                    MyImage = (Image)grdBingo.Children[j];
-                    MyImage.Source = ImageSource.FromFile("Line.png");
-                }
-            }
-
-            //Diagonal from top to left
-            if ((BingoList[4].ClickedOn == "Y") && (BingoList[8].ClickedOn == "Y") && (BingoList[12].ClickedOn == "Y") && (BingoList[16].ClickedOn == "Y") && (BingoList[20].ClickedOn == "Y"))
-            {
-                for (int j = 5; j < 22; j += 4)
-                {
-                    MyImage = (Image)grdBingo.Children[j];
-                    MyImage.Source = ImageSource.FromFile("Line.png");
-                }
-            }
-            */
         }
 
         private void btnNewGame_Clicked(object sender, EventArgs e)
         {
+            bPlayBlackout = false;
             Resetboard();
-        }
-
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
-        {
-
         }
         #endregion Events
     }
