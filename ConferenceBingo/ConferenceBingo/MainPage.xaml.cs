@@ -36,8 +36,17 @@ namespace ConferenceBingo
         {
             int iCnt = 0;
 
-            BingoList = new List<BingoClass>();
-            rList = new List<int>();
+            if (BingoList is null)
+            {
+                BingoList = new List<BingoClass>();
+                rList = new List<int>();
+            }
+            else
+            {
+                BingoList.Clear();
+                rList.Clear();
+            }            
+
             rList.Add(12);      //Add the middle number and always have it in the middle
 
             bIsBlackout = false;
