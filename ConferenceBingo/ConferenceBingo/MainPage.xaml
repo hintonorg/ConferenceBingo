@@ -6,16 +6,17 @@
              xmlns:local="clr-namespace:ConferenceBingo"
              mc:Ignorable="d"
              x:Class="ConferenceBingo.MainPage">
-    
-        <StackLayout x:Name="slGrid" Margin="0,0,0,0" BackgroundColor="White" >
-            <Grid Margin="0,0,0,0">
+
+    <StackLayout x:Name="slGrid" Margin="0,0,0,0" BackgroundColor="Black" Spacing="0" >
+        <Grid x:Name="Header" RowSpacing="0" BackgroundColor="Black" HeightRequest="35"></Grid>
+        <Grid Margin="0,0,0,0">
                 <Label Text="Conference Bingo" LineBreakMode="NoWrap" FontSize="Title" HorizontalTextAlignment="Center" BackgroundColor="White" TextColor="Black" VerticalTextAlignment="Center" HeightRequest="150"/>
-            </Grid>
-            <Grid x:Name="grdBingo" Padding="1" RowSpacing="1" ColumnSpacing="1" VerticalOptions="Center"  IsTabStop="True" IsEnabled="True" IsVisible="True" HorizontalOptions="Center" >
+        </Grid>
+        <Grid x:Name="grdBingo" Padding="1" RowSpacing="1" ColumnSpacing="1" VerticalOptions="Center"  IsTabStop="True" IsEnabled="True" IsVisible="True" HorizontalOptions="Center" >
             <Grid x:Name="grdBingoOverlay"></Grid>
         </Grid>
 
-        <Button x:Name="btnNewGame" BackgroundColor="White" HeightRequest="40" TextColor="Black" Clicked="btnNewGame_Clicked" Text="New Game" />
+        <Button x:Name="btnNewGame" BackgroundColor="White" Margin="1,0,1,0" HeightRequest="40" TextColor="Black" Clicked="btnNewGame_Clicked" Text="New Game" />
 
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
@@ -23,7 +24,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <local:AdMobView AdUnitId="{Binding AdUnitId}" Grid.Row="1" HeightRequest="50" />
+            <local:AdMobView AdUnitId="{Binding AdUnitId}" Grid.Row="1" HeightRequest="45" />
         </Grid>
+        <Grid x:Name="Footer" RowSpacing="0" BackgroundColor="Black" HeightRequest="20"></Grid>
     </StackLayout>
 </ContentPage>
