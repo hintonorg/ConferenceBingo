@@ -7,8 +7,7 @@
              mc:Ignorable="d"
              x:Class="ConferenceBingo.MainPage">
 
-    <StackLayout x:Name="slGrid" Margin="0,0,0,0" BackgroundColor="Black" Spacing="0" >
-        <Grid x:Name="Header" RowSpacing="0" BackgroundColor="White" HeightRequest="35"></Grid>
+    <StackLayout x:Name="slGrid" Margin="0,20,0,0" BackgroundColor="Black" Spacing="0" >
         <Grid Margin="0,0,0,0">
                 <Label Text="Conference Bingo" LineBreakMode="NoWrap" FontSize="Title" HorizontalTextAlignment="Center" BackgroundColor="White" TextColor="Black" VerticalTextAlignment="Center" HeightRequest="150"/>
         </Grid>
@@ -26,6 +25,5 @@
 
             <local:AdMobView AdUnitId="{Binding AdUnitId}" Grid.Row="1" HeightRequest="45" />
         </Grid>
-        <Grid x:Name="Footer" RowSpacing="0" BackgroundColor="Black" HeightRequest="20"></Grid>
     </StackLayout>
 </ContentPage>

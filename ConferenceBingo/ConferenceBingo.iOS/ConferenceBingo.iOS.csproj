@@ -26,6 +26,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer: dwayneahinton@gmail.com (32S4584MVQ)</CodesignKey>
+    <CodesignProvision>iOS Team Provisioning Profile: com.dwaynehinton.ConferenceBingo</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -45,11 +47,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer: aaronhead14@gmail.com (EB85R5649Y)</CodesignKey>
+    <CodesignKey>iPhone Developer: dwayneahinton@gmail.com (32S4584MVQ)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>
     </CodesignEntitlements>
-    <CodesignProvision />
+    <CodesignProvision>iOS Team Provisioning Profile: com.dwaynehinton.ConferenceBingo</CodesignProvision>
     <CodesignExtraArgs />
     <CodesignResourceRules />
   </PropertyGroup>

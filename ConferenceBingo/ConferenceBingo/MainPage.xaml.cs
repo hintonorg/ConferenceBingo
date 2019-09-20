@@ -232,9 +232,9 @@ namespace ConferenceBingo
             }
             else
             { 
-                answer = await DisplayAlert("BINGO!", "", "Continue--Play Blackout", "New Game");
+                answer = await DisplayAlert("BINGO!", "", "New Game", "Continue");
 
-                if (answer == true)
+                if (answer == false)
                 {
                     bPlayBlackout = true;
                 }
