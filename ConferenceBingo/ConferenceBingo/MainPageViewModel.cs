@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using ConferenceBingo;
 
 namespace ConferenceBingo
 {
@@ -11,7 +12,7 @@ namespace ConferenceBingo
 
         public MainPageViewModel()
         {
-			if (Device.RuntimePlatform == Device.iOS)
+            if (Device.RuntimePlatform == Device.iOS)
                 AdUnitId = "ca-app-pub-3940256099942544/2934735716";
             else if (Device.RuntimePlatform == Device.Android)
                 AdUnitId = "ca-app-pub-3940256099942544/6300978111";
