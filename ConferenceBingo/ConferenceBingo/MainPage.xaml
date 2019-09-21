@@ -6,13 +6,12 @@
              xmlns:local="clr-namespace:ConferenceBingo"
              mc:Ignorable="d"
              x:Class="ConferenceBingo.MainPage">
-    <Grid BackgroundColor="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        
-        <StackLayout x:Name="slGrid" Margin="0,20,0,0" BackgroundColor="Black" Spacing="0" >
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+            iOS="0, 21, 0, 0"
+            Android="0, 0, 0, 0" />
+    </ContentPage.Padding>
+    <StackLayout x:Name="slGrid" BackgroundColor="Black" Spacing="0" >
         <Grid Margin="0,0,0,0">
                 <Label Text="Conference Bingo" LineBreakMode="NoWrap" FontSize="Title" HorizontalTextAlignment="Center" BackgroundColor="White" TextColor="Black" VerticalTextAlignment="Center" HeightRequest="150"/>
         </Grid>
@@ -31,5 +30,4 @@
             <local:AdMobView AdUnitId="{Binding AdUnitId}" Grid.Row="1" HeightRequest="45" />
         </Grid>
     </StackLayout>
-    </Grid>
 </ContentPage>
