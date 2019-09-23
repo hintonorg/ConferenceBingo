@@ -42,7 +42,8 @@ namespace ConferenceBingo.Droid
 
             adView.LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
 
-            adView.LoadAd(new AdRequest.Builder().Build());
+            //adView.LoadAd(new AdRequest.Builder().Build());
+            adView.LoadAd(new AdRequest.Builder().AddTestDevice("27E3A324EEBFB7047EAFE09ADC0E59FA").Build());   //Added for the test device 09/23/2019--REMOVE before production.
 
             return adView;
         }

@@ -41,6 +41,8 @@ namespace ConferenceBingo.iOS
             Request GetRequest()
             {
                 var request = Request.GetDefaultRequest();
+                //var request = Request.GetDefaultRequest().TestDevices = @[kGADSimulatorID];     //Added for the test device 09/23/2019--REMOVE before production.
+
                 return request;
             }
 
