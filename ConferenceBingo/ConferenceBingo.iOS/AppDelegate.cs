@@ -22,6 +22,8 @@ namespace ConferenceBingo.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Google.MobileAds.MobileAds.Configure("ca-app-pub-6960864908112394~5462820333");     //My IOS App ID
+
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
