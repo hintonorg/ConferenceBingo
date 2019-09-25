@@ -225,7 +225,7 @@ namespace ConferenceBingo
 
             if(bIsBlackout == true)
             {
-                answer = await DisplayAlert("BLACKOUT!", "New Game?", "No", "Yes");
+                answer = await DisplayAlert("BLACKOUT!", "Start New Game", null, "OK");
                 if (answer == false)
                     Resetboard();
             }
