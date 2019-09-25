@@ -225,16 +225,15 @@ namespace ConferenceBingo
 
             if(bIsBlackout == true)
             {
-                //answer = await DisplayAlert("BLACKOUT!", "New Game?", "Yes", "No");
-                answer = await DisplayAlert("BLACKOUT!", "Start New Game", "", "OK");
+                answer = await DisplayAlert("BLACKOUT!", "New Game?", "No", "Yes");
                 if (answer == false)
                     Resetboard();
             }
             else
             { 
-                answer = await DisplayAlert("BINGO!", "", "New Game", "Continue");
+                answer = await DisplayAlert("BINGO!", "", "Continue", "New Game");
 
-                if (answer == false)
+                if (answer == true)
                 {
                     bPlayBlackout = true;
                 }
