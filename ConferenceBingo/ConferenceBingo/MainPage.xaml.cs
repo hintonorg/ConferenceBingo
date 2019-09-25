@@ -224,10 +224,10 @@ namespace ConferenceBingo
             bool answer;
 
             if(bIsBlackout == true)
-            { 
-                answer = await DisplayAlert("BLACKOUT!", "New Game?", "Yes", "No");
-
-                if (answer == true)
+            {
+                //answer = await DisplayAlert("BLACKOUT!", "New Game?", "Yes", "No");
+                answer = await DisplayAlert("BLACKOUT!", "Start New Game", "", "OK");
+                if (answer == false)
                     Resetboard();
             }
             else
